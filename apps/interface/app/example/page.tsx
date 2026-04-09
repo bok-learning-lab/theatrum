@@ -4,7 +4,7 @@ import { getDoc } from "@/lib/content";
 import { compileDocToComponent } from "@/lib/content-page";
 
 export default async function ExamplePage() {
-  const doc = getDoc("example", ["calvino"]);
+  const doc = getDoc("worked-examples", ["calvino"]);
   if (!doc) notFound();
 
   const MDXContent = await compileDocToComponent(doc.content);
