@@ -1,11 +1,16 @@
 import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
+import path from "path";
 
 const nextConfig: NextConfig = {
-  // Enable React strict mode for better development experience
   reactStrictMode: true,
-  // Configure pageExtensions to include MDX files
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  // Trace from the monorepo root so _content/ (which lives two levels up
+  // from apps/interface) is included in the serverless bundle on Vercel.
+  outputFileTracingRoot: path.join(__dirname, "../../"),
+  outputFileTracingIncludes: {
+    "/**/*": ["../../_content/**/*"],
+  },
 };
 
 const withMDX = createMDX({
